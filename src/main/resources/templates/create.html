@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create pass</title>
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+</head>
+<body>
+
+
+
+<div class="container">
+    <h1>Pass Management</h1>
+    <hr>
+    <h2>Create Pass</h2>
+
+    <form action="#" th:action="@{/save}" th:object="${dt}"
+          method="POST">
+
+        <input type="number" th:field="*{passId}">
+
+        <div class="form-group">
+            <label for="attendeeName">Attendee Name</label>
+            <input type="text" id="attendeeName" th:field="*{attendeeName}"
+                   class="form-control col-4" required>
+        </div>
+
+        <div class="form-group">
+            <label for="attendeeEmail">Attendee Email</label>
+            <input type="email" id="attendeeEmail" th:field="*{attendeeEmail}"
+                   class="form-control col-4" required>
+        </div>
+
+        <div class="form-group">
+            <label for="meetingName">Meeting Name</label>
+            <input type="text" id="meetingName" th:field="*{meetingName}"
+                   class="form-control col-4" required>
+        </div>
+
+        <div class="form-group">
+            <label for="passIssuedDate">Pass Issued Date</label>
+            <input type="date" id="passIssuedDate" th:field="*{passIssuedDate}"
+                   class="form-control col-4" required>
+        </div>
+
+        <div class="form-group">
+            <label for="passStatus">Pass Status</label>
+            <select id="passStatus" th:field="*{passStatus}" class="form-control col-4" required>
+                <option value="ACTIVE">Active</option>
+                <option value="EXPIRED">Expired</option>
+                <option value="CANCELLED">Cancelled</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-info col-2">Create</button>
+    </form>
+
+
+
+    <a th:href = "@{/}"> Back to Pass List</a>
+</div>
+</body>
+</html>
