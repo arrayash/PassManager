@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Controller
 public class homeControllor {
-   // @RequestMapping("/")
+   
 
 
     @Autowired
