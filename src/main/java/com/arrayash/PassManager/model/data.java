@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 public class data {
 
     @Id
-    /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private int passId;
     private String attendeeName;
     private String attendeeEmail;
@@ -30,7 +29,7 @@ public class data {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public data(){} // Default constructor
+    public data(){} 
 
     public data(int passId, String attendeeName, String attendeeEmail, String meetingName, LocalDate passIssuedDate, String passStatus, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.passId = passId;
@@ -43,7 +42,6 @@ public class data {
         this.updatedAt = updatedAt;
     }
 
-    // Getters and setters
     public int getPassId() {
         return passId;
     }
