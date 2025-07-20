@@ -1,9 +1,7 @@
 package com.arrayash.PassManager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.stereotype.Component;
@@ -12,12 +10,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-@Component
 public class data {
 
     @Id
-    /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
-    private int passId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long passId;
     private String attendeeName;
     private String attendeeEmail;
     private String meetingName;
@@ -25,14 +22,32 @@ public class data {
     private String passStatus;
 
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm", shape = JsonFormat.Shape.STRING)
     private LocalDateTime createdAt;
 
+
     @UpdateTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm", shape = JsonFormat.Shape.STRING)
     private LocalDateTime updatedAt;
 
-    public data(){} // Default constructor
+    public Integer getVersion() {
+        return version;
+    }
 
-    public data(int passId, String attendeeName, String attendeeEmail, String meetingName, LocalDate passIssuedDate, String passStatus, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public void setPassIssuedDate(LocalDate passIssuedDate) {
+        this.passIssuedDate = passIssuedDate;
+    }
+
+    @Version
+    private Integer version;
+
+    public data(){}
+
+    public data(Long passId, String attendeeName, String attendeeEmail, String meetingName, LocalDate passIssuedDate, String passStatus, LocalDateTime createdAt, LocalDateTime updatedAt,Integer version) {
         this.passId = passId;
         this.attendeeName = attendeeName;
         this.attendeeEmail = attendeeEmail;
@@ -41,14 +56,15 @@ public class data {
         this.passStatus = passStatus;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.version=version;
     }
 
-    // Getters and setters
-    public int getPassId() {
+
+    public Long getPassId() {
         return passId;
     }
 
-    public void setPassId(int passId) {
+    public void setPassId(Long passId) {
         this.passId = passId;
     }
 

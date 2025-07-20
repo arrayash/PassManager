@@ -40,4 +40,8 @@ public class passService {
         System.out.println("deleted !!!!");
         pr.deleteById((long) passid);
     }
+
+    public void createMockPass(List<data> mock) {
+        pr.saveAll(mock);
+    }
 }

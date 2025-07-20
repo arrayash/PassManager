@@ -2,45 +2,73 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Pass Management</title>
-
+    <title>Update Pass - Pass Management</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h1>Pass Management</h1>
     <hr>
-    <h2>Update Pass</h2>
+    <h2>Update Pass Details</h2>
 
-    <form action="#" th:action="@{/save}" th:object="${dt}"
-          method="POST">
+    <form action="#" th:action="@{/save}" th:object="${dt}" method="POST">
+        <input type="hidden" th:field="*{passId}">
 
+        <div class="form-group">
+            <label for="attendeeName">Attendee Name:</label>
+            <input type="text" id="attendeeName" th:field="*{attendeeName}"
+                   class="form-control" required>
+        </div>
 
-        <input type="hidden" th:field="*{passId}" >
+        <div class="form-group">
+            <label for="attendeeEmail">Attendee Email:</label>
+            <input type="email" id="attendeeEmail" th:field="*{attendeeEmail}"
+                   class="form-control" required>
+        </div>
 
-        <input type="text" th:field="*{attendeeName}" class="form-control mb-4 col-4">
+        <div class="form-group">
+            <label for="meetingName">Meeting Name:</label>
+            <input type="text" id="meetingName" th:field="*{meetingName}"
+                   class="form-control" required>
+        </div>
 
-        <input type="text" th:field="*{attendeeEmail}" class="form-control mb-4 col-4">
-        <input type="text" th:field="*{meetingName}" class="form-control mb-4 col-4">
+        <div class="form-group">
+            <label for="passIssuedDate">Pass Issued Date:</label>
+            <input type="date" id="passIssuedDate" th:field="*{passIssuedDate}"
+                   class="form-control" required>
+        </div>
 
-        <input type="date" th:field="*{passIssuedDate}" class="form-control mb-4 col-4">
+        <div class="form-group">
+            <label for="passStatus">Pass Status:</label>
+            <select id="passStatus" th:field="*{passStatus}" class="form-control">
+                <option value="ACTIVE">Active</option>
+                <option value="EXPIRED">Expired</option>
+                <option value="CANCELLED">Cancelled</option>
+            </select>
+        </div>
 
-<!--
-
-        <input type="text" th:field="*{ passStatus}" class="form-control mb-4 col-4">
-
-        <input type="time" th:field="*{createdAt}" class="form-control mb-4 col-4">
-&lt;!&ndash;     //   <input type="time" th:field="*{updatedAt}" class="form-control mb-4 col-4">&ndash;&gt;
--->
-
-
-        <button type="submit" class="btn btn-info col-2"> Update Employee</button>
+        <button type="submit" class="btn btn-primary mt-3">Update Pass</button>
     </form>
 
-
-
-    <a th:href = "@{/}"> Back to Employee List</a>
+    <hr>
+    <a th:href="@{/}" class="btn btn-secondary mt-3">Back to Pass List</a>
 </div>
 </body>
 </html>

@@ -32,6 +32,9 @@ public class passRestControllor {
         serve.createpass(dt);
     }
 
+    @PostMapping("/mock")
+    public void mockdata(@RequestBody List<data> mock){ serve.createMockPass(mock);}
+
     @PutMapping("/pass/{passid}")
     public void updatepass(@PathVariable int passid ,@RequestBody data dt ){
         serve.updatepass(dt);
